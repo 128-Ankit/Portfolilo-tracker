@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import StockForm from './StockForm';
 import StockList from './StockList';
 
+const BASE_URL = 'https://portfolilo-tracker-backend.onrender.com/api';
+
 const Dashboard = () => {
     const [stocks, setStocks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -24,7 +26,7 @@ const Dashboard = () => {
 
     const fetchStocks = async () => {
         try {
-            const response = await fetch('http://localhost:4000/api/stocks');
+            const response = await fetch(`${BASE_URL}/stocks`);
             if (!response.ok) throw new Error('Failed to fetch stocks');
             const data = await response.json();
             setStocks(data);
@@ -37,7 +39,7 @@ const Dashboard = () => {
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://localhost:4000/api/stocks/${id}`, {
+            const response = await fetch(`${BASE_URL}/stocks/${id}`, {
                 method: 'DELETE'
             });
             if (!response.ok) throw new Error('Failed to delete stock');

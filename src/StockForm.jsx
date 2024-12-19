@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 
+const BASE_URL = 'https://portfolilo-tracker-backend.onrender.com/api';
+
 const StockForm = ({ onSuccess, editingStock, setEditingStock }) => {
     const [formData, setFormData] = useState({
         ticker: '',
@@ -36,8 +38,8 @@ const StockForm = ({ onSuccess, editingStock, setEditingStock }) => {
 
         try {
             const url = editingStock
-                ? `http://localhost:4000/api/stocks/${editingStock._id}`
-                : 'http://localhost:4000/api/stocks';
+                ? `${BASE_URL}/stocks/${editingStock._id}`
+                : `${BASE_URL}/stocks`;
 
             const method = editingStock ? 'PUT' : 'POST';
 
